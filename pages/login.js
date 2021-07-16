@@ -1,7 +1,9 @@
 import { useState } from "react";
+import Head from "next/head";
 import { useTransition, useTrail, animated, config } from "react-spring";
 import { signIn } from "next-auth/client";
 import { useClickAway } from "react-use";
+import { GitHub } from "react-feather";
 
 import Loading from "../components/common/Loading";
 
@@ -33,7 +35,23 @@ const LogIn = () => {
   });
 
   return (
-    <div className="login-container">
+    <div className="login">
+      <Head>
+        <title>Log in | my-track</title>
+      </Head>
+      <div className="login-container">
+        <div
+          className="login-item border-black"
+          onClick={() =>
+            signIn("github", { callbackUrl: "http://localhost:3000/" })
+          }
+        >
+          <span className="border-right-gray">
+            <GitHub color="black" size={30} opacity="0.5" />
+          </span>
+          <div className="login-btn">Log in with Github</div>
+        </div>
+      </div>
       <div className="items-container">
         <ul>
           {trail.map((props, index) => {
@@ -57,17 +75,6 @@ const LogIn = () => {
           )}
         </div>
         {/* <Loading /> */}
-      </div>
-      <div>
-        <button
-          className="login-btn"
-          style={{ cursor: "pointer" }}
-          onClick={() =>
-            signIn("github", { callbackUrl: "http://localhost:3000/" })
-          }
-        >
-          SIGN IN
-        </button>
       </div>
     </div>
   );

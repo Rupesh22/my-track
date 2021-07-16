@@ -8,7 +8,8 @@
 }
 
 html,
-body {
+body,
+ul {
   padding: 0;
   margin: 0;
   height: 100%;
@@ -37,12 +38,33 @@ a {
 
 /* Login page */
 
-.login-container {
+.login {
   height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  grid-template-areas: "login items items";
+  /* justify-content: space-around;
+  align-items: center; */
   padding: 20px;
+}
+
+.login-container {
+  position: relative;
+  grid-area: login;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-item {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 5px 15px;
 }
 
 .login-btn {
@@ -54,6 +76,15 @@ a {
   font-weight: bold;
   letter-spacing: 1.5px;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.items-container {
+  grid-area: items;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .card {
@@ -69,14 +100,6 @@ a {
   background-color: rgba(255, 193, 7, 0.42549019607843137);
 }
 
-@media screen and (max-width: 524px) {
-  .login-container {
-    flex-direction: column;
-  }
-}
-
-/* key frames */
-
 .load_container {
   display: flex;
   flex-direction: row;
@@ -89,17 +112,35 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 16px;
-  margin: 6px;
+  margin: 3px;
 }
 
 .load_style {
   position: relative;
+  line-height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: cursive;
+  font-size: larger;
+  font-weight: 700;
   animation: load_animation 500ms infinite linear alternate-reverse;
 }
 
 .load_style:nth-child(even) {
   animation-delay: 500ms;
 }
+
+/* media queries */
+
+@media screen and (max-width: 524px) {
+  .login {
+    grid-template-areas:
+      "login login login"
+      "items items items";
+  }
+}
+
+/* key frames */
 
 @keyframes load_animation {
   0% {
@@ -108,4 +149,29 @@ a {
   100% {
     top: 0px;
   }
+}
+
+/* utilities */
+.flex-center-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-center-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.border-black {
+  margin: 3px;
+  border: 1px solid black;
+}
+
+.border-right-gray {
+  padding-right: 10px;
+  border-right: 0.4px solid gray;
 }
