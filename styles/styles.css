@@ -17,6 +17,10 @@ ul {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 #__next {
   height: 100%;
 }
@@ -130,6 +134,38 @@ a {
   animation-delay: 500ms;
 }
 
+/* navar */
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 3px 6px;
+}
+
+.nav-items {
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background-color: #f6f6f7;
+}
+.nav-item {
+  min-width: 100%;
+  padding: 1.2rem;
+  font-size: large;
+  font-weight: 600;
+  border-bottom: 1px solid rgb(0 0 0 / 3%);
+  border-top: 1px solid rgb(0 0 0 / 3%);
+}
+
+.nav-item > a {
+  background-color: lightgrey;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+.nav-item > a.active {
+  background-color: rgba(76, 117, 242, 0.09);
+  color: #4c75f2;
+}
 /* media queries */
 
 @media screen and (max-width: 524px) {
