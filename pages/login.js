@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Head from "next/head";
 import { useTransition, useTrail, animated, config } from "react-spring";
-import { signIn } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 import { useClickAway } from "react-use";
 import { GitHub } from "react-feather";
+import { useRouter } from "next/router";
 
 import Loading from "../components/common/Loading";
 
@@ -17,6 +18,8 @@ const LogIn = () => {
     "save",
   ];
   const [toggle, setToggle] = useState(true);
+  const [session] = useSession();
+  const router = useRouter();
   const trail = useTrail(items.length, {
     from: { marginLeft: -5, opacity: 0, transform: "translate3d(0,-40px,0)" },
     to: { marginLeft: 0, opacity: 1, transform: "translate3d(0,0px,0)" },
@@ -33,6 +36,11 @@ const LogIn = () => {
       friction: 15,
     },
   });
+
+  if (session) {
+    router.push("/");
+    return null;
+  }
 
   return (
     <div className="login">
