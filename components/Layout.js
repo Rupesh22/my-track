@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
       </div>
       <div>
         {expand ? (
-          <ul className="nav-items">
+          <ul className="nav-items nav-stagger">
             {navItems.map((item, index) => {
               return (
                 <li key={index} className="nav-item">
